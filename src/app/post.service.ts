@@ -7,9 +7,6 @@ import 'rxjs/add/operator/map';
 import { environment } from '../environments/environment';
 import { Post } from './post';
 
-import * as moment from 'moment';
-import 'moment/locale/es';
-
 @Injectable()
 export class PostService {
 
@@ -39,7 +36,7 @@ export class PostService {
       params: new HttpParams()
       .set('_sort','publicationDate')
       .set('_order','desc')
-      .set('publicationDate_lte', String(moment.now()))
+      .set('publicationDate_lte', Date.now().toString())
     }
 
     return this._http.get<Post[]>(`${environment.backendUri}/posts`,opciones);
