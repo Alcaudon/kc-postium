@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Post } from '../post';
+import { User } from '../user';
 
 @Component({
   selector: 'app-post-preview',
@@ -20,7 +21,11 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
+  @Output() selectedAuthor = new EventEmitter<User>();
 
+  notifyAuthorSelected(user: User): void {
+        this.selectedAuthor.emit(user);
+  }
   /*=========================================================================|
   | Green Path                                                               |
   |==========================================================================|

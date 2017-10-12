@@ -34,12 +34,12 @@ export class PostService {
 
     const opciones = {
       params: new HttpParams()
-      .set('_sort','publicationDate')
-      .set('_order','desc')
-      .set('publicationDate_lte', Date.now().toString())
+        .set('_sort', 'publicationDate')
+        .set('_order', 'desc')
+        .set('publicationDate_lte', Date.now().toString())
     }
 
-    return this._http.get<Post[]>(`${environment.backendUri}/posts`,opciones);
+    return this._http.get<Post[]>(`${environment.backendUri}/posts`, opciones);
   }
 
   getUserPosts(id: number): Observable<Post[]> {
@@ -64,7 +64,15 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    const options = {
+      params: new HttpParams()
+        .set('_sort', 'publicationDate')
+        .set('_order', 'desc')
+        .set('publicationDate_lte', Date.now().toString())
+        .set('author.id', id.toString())
+    };
+
+    return this._http.get<Post[]>(`${environment.backendUri}/posts`, options);
   }
 
   getCategoryPosts(id: number): Observable<Post[]> {
@@ -97,7 +105,7 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    return this._http.get<Post[]>(`${environment.backendUri}/posts`);
   }
 
   getPostDetails(id: number): Observable<Post> {

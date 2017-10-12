@@ -17,4 +17,5 @@
     *ngFor="let post of posts"
     [post]="post"
     (selectedPost)="showPost($event)"
+    (selectedAuthor)="selectAuthorPosts($event)"
 ></app-post-preview>
