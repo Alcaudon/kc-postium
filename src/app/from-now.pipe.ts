@@ -19,7 +19,7 @@ import 'moment/locale/es';
 })
 export class FromNowPipe implements PipeTransform {
 
-  transform(value: string): any {
+  transform(value: string): string {
     return moment(value).fromNow();
 }
 }
