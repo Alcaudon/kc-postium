@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Category } from '../category';
 
@@ -10,7 +10,7 @@ import { Category } from '../category';
 export class CategoryBoxComponent {
 
   @Input() categories: Category[];
-
+  @Output() categorySelected = new EventEmitter<Category>();
   /*=========================================================================|
   | Yellow Path                                                              |
   |==========================================================================|
@@ -20,5 +20,8 @@ export class CategoryBoxComponent {
   | que dicho clic se realiza en el template de este componente, necesitas,  |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
+  notifyCategorySelected(category: Category) {
+    this.categorySelected.emit(category);
+  }
 
 }

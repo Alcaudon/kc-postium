@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { NativeWindow } from '../window';
 import { Post } from '../post';
 import { User } from '../user';
+import { Category } from '../category';
 
 @Component({
   templateUrl: './post-details.component.html',
@@ -20,11 +21,11 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute
-        .data
-        .subscribe((data: { post: Post }) => {
-          this.post = data.post;
-          this._window.scrollTo(0, 0);
-        });
+      .data
+      .subscribe((data: { post: Post }) => {
+        this.post = data.post;
+        this._window.scrollTo(0, 0);
+      });
   }
 
   plainTextToHtml(text: string): string {
@@ -40,7 +41,7 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/users', pasando como parámetro el identificador del autor.       |
   |=========================================================================*/
   navigateAuthorPosts(user: User) {
-        this._router.navigate(['posts/users', user.id]);
+    this._router.navigate(['posts/users', user.id]);
   }
   /*=========================================================================|
   | Yellow Path                                                              |
@@ -51,5 +52,7 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/categories', pasando como parámetro el identificador de la       |
   | categoría.                                                               |
   |=========================================================================*/
-
+  navigateCategorySelected(category: Category) {
+    this._router.navigate(['posts/categories', category.id]);
+  }
 }
